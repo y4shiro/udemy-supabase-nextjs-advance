@@ -10,24 +10,21 @@ export const useDownloadUrl = (
   const bucketName = key === 'avatars' ? 'avatars' : 'posts';
 
   useEffect(() => {
-    if (!filePath) return;
-
-    const download = async () => {
-      setIsLoading(true);
-      const { data, error } = await supabase.storage
-        .from(bucketName)
-        .download(filePath);
-
-      if (error) {
+    if (filePath) {
+      const download = async () => {
+        setIsLoading(true);
+        const { data, error } = await supabase.storage
+          .from(bucketName)
+          .download(filePath);
+        if (error) {
+          setIsLoading(false);
+          throw error;
+        }
+        setFullUrl(URL.createObjectURL(data!));
         setIsLoading(false);
-        throw error;
-      }
-
-      setFullUrl(URL.createObjectURL(data!));
-      setIsLoading(false);
-    };
-
-    download();
+      };
+      download();
+    }
   }, [filePath, bucketName]);
 
   return { isLoading, fullUrl, setFullUrl };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
-import { supabase } from './../utils/supabase';
+import { supabase } from '../utils/supabase';
 
 export const useMutateAuth = () => {
   const [email, setEmail] = useState('');
@@ -37,5 +37,12 @@ export const useMutateAuth = () => {
     }
   );
 
-  return { email, setEmail, password, setPassword, loginMutation, registerMutation };
+  return {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loginMutation,
+    registerMutation,
+  };
 };

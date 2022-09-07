@@ -7,7 +7,7 @@ type State = {
   session: Session | null;
   setSession: (payload: Session | null) => void;
   editedProfile: EditedProfile;
-  updatedEditedProfile: (payload: EditedProfile) => void;
+  updateEditedProfile: (payload: EditedProfile) => void;
   resetEditedProfile: () => void;
 };
 
@@ -15,7 +15,7 @@ const useStore = create<State>((set) => ({
   session: null,
   setSession: (payload) => set({ session: payload }),
   editedProfile: { username: '', favorites: '', avatar_url: '' },
-  updatedEditedProfile: (payload) =>
+  updateEditedProfile: (payload) =>
     set({
       editedProfile: {
         username: payload.username,
